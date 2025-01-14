@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reward</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+    }
+    .message {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reward Page</h1>
+  <p class="message" id="message">Processing your reward...</p>
+
+  <script>
+    // Get the user ID from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userid');
+
+    // Simulate adding the reward
+    if (userId) {
+      // Retrieve current balance
+      const currentBalance = parseInt(localStorage.getItem('balance'), 10) || 0;
+
+      // Add 50 to the balance
+      const newBalance = currentBalance + 50;
+      localStorage.setItem('balance', newBalance);
+
+      // Update the message
+      const messageElement = document.getElementById('message');
+      messageElement.textContent = `Reward claimed! Your new balance is ${newBalance} ♻️.`;
+
+      // Redirect back to the main page after a delay
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 3000); // Redirect after 3 seconds
+    } else {
+      document.getElementById('message').textContent =
+        'Error: No user ID found in the URL.';
+    }
+  </script>
+</body>
+</html>
