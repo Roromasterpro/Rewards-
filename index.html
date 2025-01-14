@@ -24,9 +24,8 @@
   <p class="message" id="message">Processing your reward...</p>
 
   <script>
-    // Get the user ID from the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userid');
+    // Fetch Telegram user ID from localStorage or URL parameters
+    const userId = localStorage.getItem('telegram_user_id') || new URLSearchParams(window.location.search).get('userid');
 
     // Simulate adding the reward
     if (userId) {
@@ -43,7 +42,7 @@
 
       // Redirect back to the main page after a delay
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'https://roromasterpro.github.io/Task-Center-/';
       }, 3000); // Redirect after 3 seconds
     } else {
       document.getElementById('message').textContent =
